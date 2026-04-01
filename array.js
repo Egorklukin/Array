@@ -12,6 +12,10 @@ function getSelectedIds(tasks, selectedIds) {
     return selectedIds.includes(item.id);
   });
 }
+const selectedTasks = getSelectedIds(tasks, selectedIds).map((item) => ({
+  title: item.title,
+  priority: item.priority,
+}));
 console.log("Задачи, соответствующие выбранным в selectedIds задачам:");
 console.log("[");
 getSelectedIds(tasks, selectedIds).forEach((item) =>
@@ -38,7 +42,7 @@ function getSortedByPriority(sortedTask) {
 
 console.log("Выбранные задачи по убыванию приоритета:");
 console.log("[");
-getSortedByPriority(getSelectedIds(tasks, selectedIds)).forEach((item) =>
+getSortedByPriority(selectedTasks).forEach((item) =>
   console.log(`  { title: "${item.title}", priority: ${item.priority} },`),
 );
 console.log("]");
@@ -49,7 +53,7 @@ function getTasksByPriority(tasks) {
 
 console.log("Задачи с высоким приоритетом:");
 console.log("[");
-getTasksByPriority(getSelectedIds(tasks, selectedIds)).forEach((item) =>
+getTasksByPriority(selectedTasks).forEach((item) =>
   console.log(`  { title: "${item.title}", priority: ${item.priority} },`),
 );
 console.log("]");
