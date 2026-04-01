@@ -38,7 +38,7 @@ function getSortedByPriority(sortedTask) {
 
 console.log("Выбранные задачи по убыванию приоритета:");
 console.log("[");
-getSortedByPriority(tasks).forEach((item) =>
+getSortedByPriority(getSelectedIds(tasks, selectedIds)).forEach((item) =>
   console.log(`  { title: "${item.title}", priority: ${item.priority} },`),
 );
 console.log("]");
@@ -49,12 +49,14 @@ function getTasksByPriority(tasks) {
 
 console.log("Задачи с высоким приоритетом:");
 console.log("[");
-getTasksByPriority(tasks).forEach((item) =>
+getTasksByPriority(getSelectedIds(tasks, selectedIds)).forEach((item) =>
   console.log(`  { title: "${item.title}", priority: ${item.priority} },`),
 );
 console.log("]");
 function isAcceptable(tasks) {
-  return getAllDuration(tasks) > 12 ? "Допустимо" : " Перегружено";
+  return getAllDuration(tasks) < 12 ? "Допустимо" : " Перегружено";
 }
 
-console.log("Статус расписания: " + isAcceptable(tasks));
+console.log(
+  "Статус расписания: " + isAcceptable(getSelectedIds(tasks, selectedIds)),
+);
