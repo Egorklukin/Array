@@ -58,7 +58,7 @@ getTasksByPriority(selectedTasks).forEach((item) =>
 );
 console.log("]");
 function isAcceptable(tasks) {
-  return getAllDuration(tasks) < 12 ? "Допустимо" : " Перегружено";
+  return getAllDuration(tasks) <= 12 ? "Допустимо" : " Перегружено";
 }
 
 console.log(
